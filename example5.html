@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | Future Materials</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        void: '#050505',
+                        surface: '#121212',
+                        acid: '#D9FF00', /* High-vis Industrial Lime */
+                        acidHover: '#b5d600',
+                        steel: '#333333',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D9FF00; }
+
+        body { 
+            background-color: #050505; 
+            color: white; 
+            cursor: default; /* Fallback */
+        }
+
+        /* Smooth Reveal Animation Classes */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Text Outline Effect */
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+            transition: color 0.3s ease;
+        }
+        .text-outline:hover {
+            color: white;
+            -webkit-text-stroke: 0px;
+        }
+
+        /* Marquee Animation */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Loader Styles */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .loader-bar-bg { width: 200px; height: 2px; background: #333; margin-top: 10px; overflow: hidden; }
+        .loader-bar-fill { width: 0%; height: 100%; background: #D9FF00; transition: width 0.5s linear; }
+        
+        /* Custom Cursor (CSS Only fallback support) */
+        @media (hover: hover) and (pointer: fine) {
+            .cursor-dot {
+                position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+                background: #D9FF00; border-radius: 50%; pointer-events: none;
+                z-index: 10000; transform: translate(-50%, -50%);
+                mix-blend-mode: difference;
+                transition: width 0.3s, height 0.3s;
+            }
+            body:hover .cursor-dot { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="font-display text-6xl font-bold text-white tracking-tighter" id="loader-text">0%</div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar-fill" id="loader-bar"></div>
+        </div>
+    </div>
+
+    <div class="cursor-dot hidden md:block" id="cursor"></div>
+
+    <nav class="fixed top-0 w-full z-40 px-6 py-5 flex justify-between items-center bg-void/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="flex items-center gap-2 group cursor-pointer">
+            <div class="w-3 h-3 bg-acid group-hover:scale-150 transition-transform duration-300"></div>
+            <span class="font-display font-bold text-xl tracking-tighter">NEXUS</span>
+        </div>
+        
+        <div class="hidden md:flex gap-12 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400">
+            <a href="#" class="hover:text-acid transition-colors">Extraction</a>
+            <a href="#" class="hover:text-acid transition-colors">Refinery</a>
+            <a href="#" class="hover:text-acid transition-colors">Logistics</a>
+        </div>
+
+        <button class="px-5 py-2 border border-white/20 rounded-none font-mono text-[10px] uppercase tracking-widest hover:bg-acid hover:text-black hover:border-acid transition-all duration-300">
+            Client Portal
+        </button>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-void bg-grid-pattern bg-[length:60px_60px]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-acid/5 rounded-full blur-[100px]"></div>
+
+        <div class="relative z-10 text-center px-4 mt-10">
+            <div class="mb-4 inline-flex items-center gap-2 border border-white/10 px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm reveal-up">
+                <span class="w-1.5 h-1.5 bg-acid rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-mono text-gray-300 uppercase tracking-widest">System Online</span>
+            </div>
+
+            <h1 class="font-display text-[13vw] leading-[0.8] font-bold tracking-tighter uppercase text-white mix-blend-normal">
+                <div class="reveal-up delay-100">Material</div>
+                <div class="text-outline reveal-up delay-200">Intelligence</div>
+            </h1>
+
+            <p class="max-w-md mx-auto mt-12 text-gray-400 font-sans font-light text-sm md:text-base leading-relaxed reveal-up delay-300">
+                We bridge the gap between raw planetary resources and advanced manufacturing through AI-driven logistics.
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 left-6 flex flex-col items-center gap-2 reveal-up delay-500">
+            <div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
+            <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest rotate-180" style="writing-mode: vertical-rl;">Scroll</span>
+        </div>
+    </header>
+
+    <div class="bg-acid py-3 border-y border-black overflow-hidden relative z-20">
+        <div class="marquee-container">
+            <div class="marquee-content font-mono text-black font-bold text-sm uppercase tracking-wider">
+                LITHIUM CARBONATE <span class="opacity-60">▲ 2.4%</span> &nbsp;///&nbsp;
+                COBALT <span class="opacity-60">▼ 0.8%</span> &nbsp;///&nbsp;
+                COPPER LME <span class="opacity-60">▲ 1.2%</span> &nbsp;///&nbsp;
+                RARE EARTHS <span class="opacity-60">▬ 0.0%</span> &nbsp;///&nbsp;
+                NICKEL <span class="opacity-60">▲ 3.1%</span> &nbsp;///&nbsp;
+                GOLD BULLION <span class="opacity-60">▲ 0.5%</span> &nbsp;///&nbsp;
+                LITHIUM CARBONATE <span class="opacity-60">▲ 2.4%</span> &nbsp;///&nbsp;
+                COBALT <span class="opacity-60">▼ 0.8%</span> &nbsp;///&nbsp;
+                COPPER LME <span class="opacity-60">▲ 1.2%</span> &nbsp;///&nbsp;
+                RARE EARTHS <span class="opacity-60">▬ 0.0%</span> &nbsp;///&nbsp;
+                NICKEL <span class="opacity-60">▲ 3.1%</span> &nbsp;///&nbsp;
+                GOLD BULLION <span class="opacity-60">▲ 0.5%</span> &nbsp;///&nbsp;
+            </div>
+        </div>
+    </div>
+
+    <section class="py-24 px-4 md:px-8 bg-void border-b border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <h2 class="font-display text-4xl md:text-6xl text-white font-medium reveal-up">
+                    Architecture of <br><span class="text-gray-600">Supply.</span>
+                </h2>
+                <a href="#" class="group flex items-center gap-3 text-sm font-mono uppercase tracking-widest text-acid hover:text-white transition-colors reveal-up">
+                    View Full Capabilities
+                    <i class="ri-arrow-right-line transform group-hover:translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 h-auto md:h-[700px]">
+                
+                <div class="md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group border border-white/10 reveal-up">
+                    <img src="https://images.unsplash.com/photo-1599708153386-59595493bb3d?q=80&w=2670&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 group-hover:opacity-70 transition-opacity"></div>
+                    
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <div class="w-12 h-12 bg-white/10 backdrop-blur border border-white/20 rounded-full flex items-center justify-center mb-6 text-acid group-hover:bg-acid group-hover:text-black transition-colors">
+                            <i class="ri-globe-line text-xl"></i>
+                        </div>
+                        <h3 class="font-display text-3xl text-white mb-2">Global Extraction Network</h3>
+                        <p class="text-gray-400 font-sans font-light max-w-sm">Operating 12 zero-emission sites across Australia, Chile, and Congo.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 bg-surface border border-white/10 rounded-xl p-8 flex flex-col justify-between hover:border-acid/50 transition-colors group reveal-up delay-100">
+                    <div class="flex justify-between items-start">
+                        <span class="font-mono text-xs text-gray-500 uppercase tracking-widest">Total Volume</span>
+                        <i class="ri-bar-chart-grouped-line text-gray-500 group-hover:text-acid transition-colors"></i>
+                    </div>
+                    <div>
+                        <div class="font-display text-5xl text-white font-bold mb-1 group-hover:text-acid transition-colors">4.2M</div>
+                        <div class="text-sm text-gray-400">Metric Tons / Year</div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 bg-gradient-to-br from-surface to-black border border-white/10 rounded-xl p-8 relative overflow-hidden group reveal-up delay-200">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-acid/10 rounded-full blur-3xl group-hover:bg-acid/20 transition-all"></div>
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div class="font-mono text-xs text-acid uppercase tracking-widest border border-acid/30 px-2 py-1 inline-block w-fit rounded">Live Tracking</div>
+                        <div>
+                            <h3 class="font-display text-2xl text-white mb-2">AI Logistics</h3>
+                            <p class="text-xs text-gray-500 font-sans leading-relaxed">Predictive routing algorithms reducing carbon footprint by 34%.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-void overflow-hidden border-b border-white/5">
+        <div class="marquee-container transform -rotate-1 opacity-20 hover:opacity-100 transition-opacity duration-500">
+            <h2 class="marquee-content font-display text-8xl font-bold text-white whitespace-nowrap">
+                PRECIOUS METALS • RARE EARTHS • FERROUS ALLOYS • ENERGY MINERALS • PRECIOUS METALS • RARE EARTHS •
+            </h2>
+        </div>
+    </section>
+
+    <footer class="bg-surface pt-20 pb-8 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 mb-20">
+                <div>
+                    <div class="font-display font-bold text-2xl mb-8">NEXUS<span class="text-acid">.</span></div>
+                    <h2 class="font-display text-4xl md:text-5xl font-medium leading-tight">
+                        Ready to secure your <br>
+                        <span class="text-gray-600">supply chain?</span>
+                    </h2>
+                </div>
+                <div class="flex flex-col justify-end items-start md:items-end">
+                    <button class="px-8 py-4 bg-acid text-black font-display font-bold text-lg rounded hover:bg-white transition-colors w-full md:w-auto">
+                        Start Partnership
+                    </button>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-500 uppercase tracking-wider">
+                <p>&copy; 2026 NEXUS MATERIALS INC.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Terms</a>
+                    <a href="#" class="hover:text-white">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. LOADER LOGIC (Fail-safe)
+        const loader = document.getElementById('loader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+        
+        // Safety timeout: Remove loader after 3s even if 'load' event doesn't fire
+        const safetyTimer = setTimeout(hideLoader, 3500);
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 10) + 1;
+            if (progress > 100) progress = 100;
+            
+            loaderBar.style.width = `${progress}%`;
+            loaderText.innerText = `${progress}%`;
+
+            if (progress === 100) {
+                clearInterval(interval);
+                hideLoader();
+            }
+        }, 150);
+
+        function hideLoader() {
+            clearTimeout(safetyTimer);
+            loader.style.transform = 'translateY(-100%)';
+            // Start Hero Animations after loader moves
+            setTimeout(initAnimations, 500);
+        }
+
+        // 2. SCROLL REVEAL ANIMATION
+        function initAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.reveal-up');
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // 3. CUSTOM CURSOR
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.left = e.clientX + 'px';
+            });
+        });
+
+        // Hover effect for cursor
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                cursor.style.background = '#fff';
+                cursor.style.mixBlendMode = 'difference';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = '#D9FF00';
+                cursor.style.mixBlendMode = 'normal';
+            });
+        });
+    </script>
+</body>
+</html>
