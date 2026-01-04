@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEROLITH | Global Mineral Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d55', // Muted Champagne
+                        },
+                        sand: {
+                            50: '#f9f9f7',
+                            100: '#f0f0eb',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1618123069712-92617f8a9e45?q=80&w=2670&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            color: transparent;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-slate-800 antialiased selection:bg-gold-600 selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4" id="navbar">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 border border-white/30 flex items-center justify-center transform group-hover:rotate-45 transition-transform duration-500">
+                        <div class="w-2 h-2 bg-gold-600"></div>
+                    </div>
+                    <span class="font-serif text-2xl tracking-widest text-white font-medium">AEROLITH</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-12">
+                    <a href="#expertise" class="text-white/80 hover:text-gold-600 text-sm tracking-widest uppercase transition-colors">Expertise</a>
+                    <a href="#commodities" class="text-white/80 hover:text-gold-600 text-sm tracking-widest uppercase transition-colors">Commodities</a>
+                    <a href="#sustainability" class="text-white/80 hover:text-gold-600 text-sm tracking-widest uppercase transition-colors">Sustainability</a>
+                    <a href="#contact" class="px-6 py-2 border border-white/20 text-white text-sm tracking-widest uppercase hover:bg-gold-600 hover:border-gold-600 transition-all duration-300">
+                        Partner With Us
+                    </a>
+                </div>
+
+                <button class="md:hidden text-white" id="mobile-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-slate-900/40 mix-blend-multiply z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
+            <img src="https://images.unsplash.com/photo-1599708153386-59595493bb3d?q=80&w=2670&auto=format&fit=crop" 
+                 alt="Mineral Texture" 
+                 class="w-full h-full object-cover scale-105 animate-[pulse_10s_ease-in-out_infinite] opacity-80">
+        </div>
+
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            <p class="text-gold-600 tracking-[0.3em] uppercase text-sm mb-6 reveal">Established 1985</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-8 reveal" style="transition-delay: 100ms;">
+                Refining the <br/>
+                <span class="italic text-gold-600">Earth's</span> Potential
+            </h1>
+            <p class="text-gray-300 max-w-xl mx-auto text-lg mb-12 font-light reveal" style="transition-delay: 200ms;">
+                We bridge the gap between raw mineral extraction and global industrial advancement through sustainable trading and logistics.
+            </p>
+            
+            <div class="reveal" style="transition-delay: 300ms;">
+                <a href="#expertise" class="inline-flex flex-col items-center gap-2 group cursor-pointer">
+                    <span class="text-white text-xs tracking-[0.2em] uppercase group-hover:text-gold-600 transition-colors">Explore</span>
+                    <div class="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gold-600 -translate-y-full group-hover:translate-y-0 transition-transform duration-700"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-slate-900 border-b border-white/5 py-4">
+        <div class="marquee-container">
+            <div class="marquee-content flex gap-12 text-sm">
+                <span class="text-gray-400">IRON ORE (62% FE) <span class="text-green-400 font-mono">▲ 118.50</span></span>
+                <span class="text-gray-400">THERMAL COAL <span class="text-red-400 font-mono">▼ 132.20</span></span>
+                <span class="text-gray-400">COPPER (LME) <span class="text-green-400 font-mono">▲ 8,540.00</span></span>
+                <span class="text-gray-400">NICKEL <span class="text-green-400 font-mono">▲ 16,300.00</span></span>
+                <span class="text-gray-400">LITHIUM CARB <span class="text-gray-400 font-mono">▬ 14,500.00</span></span>
+                <span class="text-gray-400">GOLD <span class="text-green-400 font-mono">▲ 2,045.10</span></span>
+                <span class="text-gray-400 pl-12">IRON ORE (62% FE) <span class="text-green-400 font-mono">▲ 118.50</span></span>
+                <span class="text-gray-400">THERMAL COAL <span class="text-red-400 font-mono">▼ 132.20</span></span>
+                <span class="text-gray-400">COPPER (LME) <span class="text-green-400 font-mono">▲ 8,540.00</span></span>
+                <span class="text-gray-400">NICKEL <span class="text-green-400 font-mono">▲ 16,300.00</span></span>
+                <span class="text-gray-400">LITHIUM CARB <span class="text-gray-400 font-mono">▬ 14,500.00</span></span>
+                <span class="text-gray-400">GOLD <span class="text-green-400 font-mono">▲ 2,045.10</span></span>
+            </div>
+        </div>
+    </div>
+
+    <section id="expertise" class="py-24 md:py-32 bg-sand-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="text-gold-600 text-sm tracking-[0.2em] uppercase font-bold mb-4 block">Who We Are</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-slate-900 leading-[1.2] mb-8">
+                        Architects of the <br>
+                        <span class="italic text-gray-400">Global Supply Chain.</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8 font-light">
+                        At Aerolith, we don't just move materials; we engineer value. For over three decades, we have curated a portfolio of high-grade assets and logistics networks that power the world's steel, energy, and construction industries.
+                    </p>
+                    <ul class="space-y-4 border-l border-gold-600/30 pl-6">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-gold-600 rounded-full"></span>
+                            <span class="text-slate-800 font-medium">Strategic Asset Management</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-gold-600 rounded-full"></span>
+                            <span class="text-slate-800 font-medium">End-to-End Logistics</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-gold-600 rounded-full"></span>
+                            <span class="text-slate-800 font-medium">Sustainable Mining Practices</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative reveal delay-200">
+                    <div class="aspect-[4/5] overflow-hidden bg-gray-200 relative">
+                        <img src="https://images.unsplash.com/photo-1615811361524-78849302c385?q=80&w=2574&auto=format&fit=crop" alt="Abstract Mineral" class="object-cover w-full h-full hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 bg-white p-8 shadow-xl max-w-xs hidden md:block">
+                        <p class="font-serif text-5xl text-slate-900 mb-2">35<span class="text-gold-600 text-3xl">+</span></p>
+                        <p class="text-gray-500 uppercase tracking-widest text-xs">Years of Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commodities" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <span class="text-gold-600 text-sm tracking-[0.2em] uppercase font-bold mb-4 block">Our Portfolio</span>
+                    <h2 class="font-serif text-4xl text-slate-900">Essential Resources</h2>
+                </div>
+                <a href="#" class="hidden md:inline-block border-b border-slate-900 pb-1 text-sm uppercase tracking-widest hover:text-gold-600 hover:border-gold-600 transition-colors">View Full Catalogue</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-1">
+                <div class="group relative aspect-[4/5] overflow-hidden cursor-pointer reveal">
+                    <img src="https://images.unsplash.com/photo-1518335345722-e3a1097277aa?q=80&w=2670&auto=format&fit=crop" alt="Ferrous" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+                        <div class="w-12 h-[1px] bg-gold-600 mb-4 transition-all duration-300 group-hover:w-20"></div>
+                        <h3 class="font-serif text-2xl mb-2">Ferrous Metals</h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">Iron Ore Fines, Lumps, Pellets & Concentrates.</p>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/5] overflow-hidden cursor-pointer reveal delay-100">
+                    <img src="https://images.unsplash.com/photo-1629731498144-469b66ba3a6e?q=80&w=2574&auto=format&fit=crop" alt="Coal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+                        <div class="w-12 h-[1px] bg-gold-600 mb-4 transition-all duration-300 group-hover:w-20"></div>
+                        <h3 class="font-serif text-2xl mb-2">Energy Products</h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">Thermal Coal, Coking Coal & Metallurgical Coke.</p>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/5] overflow-hidden cursor-pointer reveal delay-200">
+                    <img src="https://images.unsplash.com/photo-1549147104-5853a4369792?q=80&w=2666&auto=format&fit=crop" alt="Steel" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+                        <div class="w-12 h-[1px] bg-gold-600 mb-4 transition-all duration-300 group-hover:w-20"></div>
+                        <h3 class="font-serif text-2xl mb-2">Steel Semis</h3>
+                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">Billets, Slabs, HRC & CRC for manufacturing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left">
+                <div class="reveal">
+                    <p class="text-4xl md:text-5xl font-serif mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">4.5M</p>
+                    <p class="text-gold-600 text-xs tracking-[0.2em] uppercase">Tons Annually</p>
+                </div>
+                <div class="reveal delay-100">
+                    <p class="text-4xl md:text-5xl font-serif mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">$850M</p>
+                    <p class="text-gold-600 text-xs tracking-[0.2em] uppercase">Trade Volume</p>
+                </div>
+                <div class="reveal delay-200">
+                    <p class="text-4xl md:text-5xl font-serif mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">52</p>
+                    <p class="text-gold-600 text-xs tracking-[0.2em] uppercase">Countries Served</p>
+                </div>
+                <div class="reveal delay-300">
+                    <p class="text-4xl md:text-5xl font-serif mb-2 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">3</p>
+                    <p class="text-gold-600 text-xs tracking-[0.2em] uppercase">Continents</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-sand-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <span class="text-gold-600 text-sm tracking-[0.2em] uppercase font-bold mb-4 block">Our Operations</span>
+                    <h2 class="font-serif text-4xl text-slate-900 mb-6">Beyond Trading</h2>
+                    <p class="text-gray-600 font-light mb-8">We offer comprehensive supply chain solutions, financing, and risk management.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 border-l-2 border-gold-600 shadow-sm hover:shadow-md transition-shadow">
+                            <h4 class="font-serif text-lg text-slate-800 mb-2">Trade Finance</h4>
+                            <p class="text-sm text-gray-500">Tailored credit facilities and LC solutions for seamless procurement.</p>
+                        </div>
+                        <div class="bg-white p-6 border-l-2 border-transparent hover:border-gold-600 shadow-sm hover:shadow-md transition-all">
+                            <h4 class="font-serif text-lg text-slate-800 mb-2">Ocean Freight</h4>
+                            <p class="text-sm text-gray-500">Chartering and vessel management ensuring timely global delivery.</p>
+                        </div>
+                        <div class="bg-white p-6 border-l-2 border-transparent hover:border-gold-600 shadow-sm hover:shadow-md transition-all">
+                            <h4 class="font-serif text-lg text-slate-800 mb-2">Risk Management</h4>
+                            <p class="text-sm text-gray-500">Hedging strategies to protect against market volatility.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-full min-h-[400px] bg-slate-200 relative reveal delay-200 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1494412574643-35d3d4706f6e?q=80&w=2670&auto=format&fit=crop" alt="Shipping" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-slate-900/10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-slate-900 text-white py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gold-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="font-serif text-4xl md:text-5xl mb-6 reveal">Initiate a Conversation</h2>
+            <p class="text-gray-400 font-light mb-12 reveal delay-100">Connect with our trading desk for quotes, partnership opportunities, or general inquiries.</p>
+
+            <form class="space-y-4 max-w-lg mx-auto reveal delay-200">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Name" class="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-600 transition-colors">
+                    <input type="text" placeholder="Company" class="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-600 transition-colors">
+                </div>
+                <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-600 transition-colors">
+                <textarea rows="4" placeholder="Inquiry Details" class="w-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-600 transition-colors resize-none"></textarea>
+                
+                <button type="submit" class="w-full bg-gold-600 text-white font-medium py-3 uppercase tracking-widest text-xs hover:bg-gold-500 transition-colors">
+                    Request Consultation
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-gray-500 py-12 border-t border-white/5 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-gold-600"></div>
+                <span class="text-white font-serif tracking-widest">AEROLITH</span>
+            </div>
+            
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-gold-600 transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-gold-600 transition-colors">Legal</a>
+                <a href="#" class="hover:text-gold-600 transition-colors">Sitemap</a>
+            </div>
+
+            <p>&copy; 2024 Aerolith Holdings. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        // Simple alert for demo purposes
+        mobileToggle.addEventListener('click', () => {
+            alert('Mobile menu placeholder - expands nicely in full implementation.');
+        });
+    </script>
+</body>
+</html>
