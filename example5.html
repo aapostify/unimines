@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE AURUM PROJECT | Modern Mining</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            900: '#1c1917',
+                        },
+                        bronze: '#a88b7d', 
+                    },
+                    fontFamily: {
+                        sans: ['Mulish', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background-color: #d6d3d1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #a88b7d; }
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image hover zoom effect */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom { transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .group:hover .img-zoom { transform: scale(1.05); }
+
+        /* Text selection color */
+        ::selection { background: #a88b7d; color: white; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 antialiased selection:bg-bronze selection:text-white">
+
+    <header class="fixed w-full top-0 z-50 bg-stone-50/90 backdrop-blur-sm transition-all duration-300 py-6" id="header">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl tracking-tight font-semibold hover:opacity-70 transition-opacity">
+                AURUM<span class="text-bronze">.</span>
+            </a>
+
+            <nav class="hidden md:flex gap-10">
+                <a href="#project" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">The Project</a>
+                <a href="#materials" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">Resources</a>
+                <a href="#impact" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">Sustainability</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:inline-block border-b border-stone-900 pb-1 text-xs uppercase tracking-[0.2em] hover:text-bronze hover:border-bronze transition-all">
+                Inquire
+            </a>
+
+            <button class="md:hidden space-y-1.5 p-2">
+                <span class="block w-6 h-px bg-stone-900"></span>
+                <span class="block w-6 h-px bg-stone-900"></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="relative h-screen min-h-[700px] flex items-center pt-20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 md:order-1 fade-up">
+                <p class="text-bronze font-serif italic text-lg mb-6">Redefining Earth's Resources</p>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8">
+                    Essential <br>
+                    <span class="text-stone-400">Elegance</span>
+                </h1>
+                <p class="text-stone-500 font-light max-w-md leading-relaxed mb-10 text-sm md:text-base">
+                    The Aurum Project represents the intersection of industrial capability and environmental stewardship. We extract value, beautifully.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="#project" class="bg-stone-900 text-white px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-bronze transition-colors">
+                        Discover Project
+                    </a>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 h-[50vh] md:h-[80vh] relative fade-up delay-100">
+                <div class="absolute inset-0 bg-stone-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
+                         alt="Abstract Mineral Texture" 
+                         class="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-1000">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl max-w-[200px] hidden md:block">
+                    <p class="font-serif italic text-stone-500 text-sm">Location</p>
+                    <p class="font-sans text-xs uppercase tracking-widest mt-1">Norte Region, Chile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project" class="py-24 md:py-32">
+        <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row gap-16 md:gap-32">
+                <div class="md:w-1/3 fade-up">
+                    <span class="block w-12 h-px bg-bronze mb-6"></span>
+                    <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+                        A new era of <br> <i>extraction.</i>
+                    </h2>
+                </div>
+                
+                <div class="md:w-2/3 fade-up delay-100">
+                    <p class="text-xl font-light leading-relaxed text-stone-600 mb-8">
+                        We don't just mine; we curate. The Aurum Project utilizes precision automated technology to minimize surface disruption while maximizing yield efficiency.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mt-12">
+                        <div>
+                            <h3 class="font-serif text-3xl mb-2">0%</h3>
+                            <p class="text-xs uppercase tracking-widest text-stone-500">Water Waste</p>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-3xl mb-2">100%</h3>
+                            <p class="text-xs uppercase tracking-widest text-stone-500">Renewable Energy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="materials" class="py-12 md:py-20 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+                
+                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer fade-up">
+                    <img src="https://images.unsplash.com/photo-1599708153386-59595493bb3d?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="Copper">
+                    <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <p class="font-serif italic text-lg">Raw Material</p>
+                        <h3 class="text-sm uppercase tracking-[0.2em]">Copper Cathode</h3>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer fade-up delay-100">
+                    <img src="https://images.unsplash.com/photo-1619546952912-535e9ec3646c?q=80&w=1932&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="Lithium">
+                    <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <p class="font-serif italic text-lg">Energy Storage</p>
+                        <h3 class="text-sm uppercase tracking-[0.2em]">Lithium Carbonate</h3>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer fade-up delay-200">
+                    <img src="https://images.unsplash.com/photo-1523473827532-6805f9a9418e?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover img-zoom" alt="Gold">
+                    <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <p class="font-serif italic text-lg">Precious Metal</p>
+                        <h3 class="text-sm uppercase tracking-[0.2em]">Refined Gold</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-stone-100 text-center">
+        <div class="max-w-3xl mx-auto px-6 fade-up">
+            <svg class="w-8 h-8 mx-auto mb-8 text-bronze" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H11.983L11.983 15C11.983 13.3431 13.3262 12 14.983 12H18.983V9H14.983C11.6693 9 8.983 11.6863 8.983 15L8.983 15.0019C7.88212 15.0189 7 15.9126 7 17.017V20C7 21.1046 7.89543 22 9 22H12.017C13.1216 22 14.017 21.1046 14.017 20V21ZM21 21L21 18C21 16.8954 20.1046 16 19 16H18.983L18.983 15C18.983 13.5684 18.5269 12.2435 17.7501 11.1643C16.9038 10.4578 15.9818 9.94588 15.0075 9.61014C15.6565 7.55011 17.6107 6 19.983 6C20.5353 6 20.983 5.55228 20.983 5C20.983 4.44772 20.5353 4 19.983 4C15.5647 4 11.983 7.58172 11.983 12L11.983 13H11.017C9.91243 13 9.01697 13.8954 9.01697 15H9C7.34315 15 6 16.3431 6 18V21C6 22.6569 7.34315 24 9 24H12.017C13.6738 24 15.017 22.6569 15.017 21H16V22H19C20.6569 22 22 20.6569 22 19V21ZM12 11L12 11.0001L12 11Z"/></svg>
+            <h3 class="font-serif text-2xl md:text-4xl italic leading-relaxed text-stone-800">
+                "Modern mining is not about conquering nature, but partnering with it to build the infrastructure of tomorrow."
+            </h3>
+            <p class="mt-8 text-xs uppercase tracking-widest text-stone-500">— The Board of Directors</p>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-stone-900 text-stone-400 py-24">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="flex flex-col justify-between h-full">
+                    <div>
+                        <h2 class="font-serif text-3xl text-stone-100 mb-6">Aurum Project.</h2>
+                        <p class="font-light max-w-sm">
+                            Headquarters<br>
+                            1200 Mining District Rd,<br>
+                            Santiago, Chile
+                        </p>
+                    </div>
+                    <div class="mt-12">
+                        <a href="mailto:info@aurum.com" class="text-xl font-serif italic text-bronze hover:text-white transition-colors">hello@aurum-project.com</a>
+                    </div>
+                </div>
+
+                <div>
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="group">
+                                <label class="block text-xs uppercase tracking-widest mb-2 group-hover:text-bronze transition-colors">Name</label>
+                                <input type="text" class="w-full bg-transparent border-b border-stone-700 py-2 text-stone-100 focus:outline-none focus:border-bronze transition-colors">
+                            </div>
+                            <div class="group">
+                                <label class="block text-xs uppercase tracking-widest mb-2 group-hover:text-bronze transition-colors">Company</label>
+                                <input type="text" class="w-full bg-transparent border-b border-stone-700 py-2 text-stone-100 focus:outline-none focus:border-bronze transition-colors">
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="block text-xs uppercase tracking-widest mb-2 group-hover:text-bronze transition-colors">Inquiry</label>
+                            <textarea rows="2" class="w-full bg-transparent border-b border-stone-700 py-2 text-stone-100 focus:outline-none focus:border-bronze transition-colors"></textarea>
+                        </div>
+                        <button class="text-white border border-stone-700 px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-bronze hover:border-bronze transition-all duration-300">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-24 pt-8 border-t border-stone-800 flex justify-between items-center text-[10px] uppercase tracking-widest">
+                <p>&copy; 2024 Aurum Holdings</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy</a>
+                    <a href="#" class="hover:text-white">Terms</a>
+                    <a href="#" class="hover:text-white">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Fade Up Animation on Scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Header Background on Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-sm');
+                header.classList.replace('py-6', 'py-4');
+            } else {
+                header.classList.remove('shadow-sm');
+                header.classList.replace('py-4', 'py-6');
+            }
+        });
+    </script>
+</body>
+</html>
